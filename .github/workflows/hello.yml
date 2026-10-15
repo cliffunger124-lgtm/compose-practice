@@ -1,12 +1,15 @@
-name: Hello Pipline
+name: Build Docker Image
+
 on:
   push:
     branches: [main]
 
-
 jobs:
-  hello:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ubunte-latest
     steps:
-      - name: Say hello
-        run: echo "Hello from GitHub Actions!"
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: build image
+        run: docker build -t compose-practice:test ./web
